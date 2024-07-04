@@ -7,7 +7,7 @@ Grid::Grid()
     this->numCols = columnCount;
     this->cellSize = cellDimension;
     initialize();
-    colors = getCellColors();
+    colors = colorsArray;
 }
 
 void Grid::initialize()
@@ -31,12 +31,6 @@ void Grid::print() const
         }
         std::cout << "\n";
     }
-}
-
-std::vector<Color> Grid::getCellColors() const
-{
-
-    return {darkGrey, green, red, orange, yellow, purple, cyan, blue};
 }
 
 void Grid::draw() const
