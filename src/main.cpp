@@ -1,5 +1,4 @@
-#include "Grid.h"
-#include "BlockTypes.cpp"
+#include "Game.h"
 
 const Color darkBlue = {44, 44, 127, 255};
 const Color darkGrey = {26, 31, 40, 255};
@@ -23,25 +22,20 @@ const int cellDimension = 30;
 
 int main()
 {
+    srand(time(0));
     InitWindow(screenWidth, screenHeight, "Tetris Game");
     SetTargetFPS(60);
 
-    Z_Block test;
-    
-
-    Grid grid;
-    grid.print();
-    // grid.gridCells[0][1] = 1;
-    // grid.gridCells[0][2] = 2;
-    // grid.gridCells[0][3] = 3;
-    // grid.gridCells[0][4] = 4;
+    Game game;
 
     while (!WindowShouldClose())
     {
+        game.handleInput();
         BeginDrawing();
         ClearBackground(darkBlue);
-        grid.draw();
-        test.draw();
+
+        game.draw();
+
         // if (IsKeyPressed(KEY_R))
         //     test.rotationalState = (test.rotationalState + 1) % 4;
         EndDrawing();

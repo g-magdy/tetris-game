@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <iostream>
+#include <random>
 
 extern const Color darkBlue;
 extern const Color darkGrey;
