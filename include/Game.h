@@ -10,6 +10,7 @@ public:
     Game();
     void draw();
     void handleInput();
+    void RotateBlock();
     void MoveBlockLeft();
     void MoveBlockRight();
     void MoveBlockDown();

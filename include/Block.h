@@ -23,6 +23,9 @@ public:
     void move(int rows, int columns);
 
     std::vector<Position> getCellPositions();
+    void rotate();
+
+    void undoRotation();
 
 private:
     int cellSize;

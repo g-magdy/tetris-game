@@ -35,24 +35,22 @@ void Game::draw()
 
 void Game::handleInput()
 {
-    int keyPressed = GetKeyPressed();
-    switch (keyPressed)
-    {
-    case KEY_DOWN:
+    if (IsKeyPressed(KEY_UP))
+        RotateBlock();
+    else if (IsKeyPressed(KEY_DOWN))
         MoveBlockDown();
-        break;
-
-    case KEY_LEFT:
+    else if (IsKeyPressed(KEY_LEFT))
         MoveBlockLeft();
-        break;
-
-    case KEY_RIGHT:
+    else if (IsKeyPressed(KEY_RIGHT))
         MoveBlockRight();
-        break;
 
-    default:
-        break;
-    }
+}
+
+void Game::RotateBlock()
+{
+    currentBlock.rotate();
+    if (isBlockOutside())
+        currentBlock.undoRotation();
 }
 
 void Game::MoveBlockLeft()

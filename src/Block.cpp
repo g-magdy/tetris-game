@@ -36,3 +36,15 @@ std::vector<Position> Block::getCellPositions()
     }
     return movedTiles;
 }
+
+void Block::rotate()
+{
+    rotationalState++;
+    rotationalState = int(abs(rotationalState) % 4);
+}
+
+void Block::undoRotation()
+{
+    rotationalState--;
+    rotationalState = int(abs(rotationalState) % 4);
+}
