@@ -26,7 +26,8 @@ int main()
     InitWindow(screenWidth, screenHeight, "Tetris Game");
     SetTargetFPS(60);
 
-    L_Block test;
+    Z_Block test;
+    
 
     Grid grid;
     grid.print();
@@ -41,6 +42,8 @@ int main()
         ClearBackground(darkBlue);
         grid.draw();
         test.draw();
+        // if (IsKeyPressed(KEY_R))
+        //     test.rotationalState = (test.rotationalState + 1) % 4;
         EndDrawing();
     }
     CloseWindow();
