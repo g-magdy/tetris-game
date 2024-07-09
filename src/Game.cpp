@@ -27,6 +27,17 @@ std::vector<Block> Game::getBlocks()
     return {I_Block(), J_Block(), L_Block(), O_Block(), S_Block(), T_Block(), Z_Block()};   
 }
 
+bool Game::blockFits()
+{
+    std::vector<Position> tiles = currentBlock.getCellPositions();
+    for (Position p : tiles)
+    {
+        if (!grid.isCellEmpty(p.row, p.column))
+            return false;
+    }
+    return true;
+}
+
 void Game::draw()
 {
     grid.draw();
@@ -56,21 +67,24 @@ void Game::RotateBlock()
 void Game::MoveBlockLeft()
 {
     currentBlock.move(0, -1);
-    if (isBlockOutside())
+    if (isBlockOutside() || blockFits() == false)
         currentBlock.move(0, 1);
 }
 void Game::MoveBlockRight()
 {
     currentBlock.move(0, 1);
-    if (isBlockOutside())
+    if (isBlockOutside() || blockFits() == false)
         currentBlock.move(0, -1);
 }
 
 void Game::MoveBlockDown()
 {
     currentBlock.move(1, 0);
-    if (isBlockOutside())
+    if (isBlockOutside() || blockFits() == false)
+    {
         currentBlock.move(-1, 0);
+        lockBlock();
+    }
 }
 
 bool Game::isBlockOutside()
@@ -82,4 +96,19 @@ bool Game::isBlockOutside()
             return true;
     }
     return false;
+}
+
+void Game::lockBlock()
+{
+    int clr = currentBlock.id;
+    std::vector<Position> tiles = currentBlock.getCellPositions();
+    for (Position item : tiles)
+    {
+        grid.gridCells[item.row][item.column] = clr;
+        std::cout << clr;
+        currentBlock = nextBlock;
+        nextBlock = getRandomBLock();
+    }
+    std::cout << '\n';
+    grid.print();
 }

@@ -10,17 +10,19 @@ public:
     Game();
     void draw();
     void handleInput();
+    Grid grid;
+
+private:
     void RotateBlock();
     void MoveBlockLeft();
     void MoveBlockRight();
     void MoveBlockDown();
     bool isBlockOutside();
-    Grid grid;
-
-private:
+    void lockBlock();
     std::vector<Block> blocks;
     Block getRandomBLock();
     std::vector<Block> getBlocks();
+    bool blockFits();
     Block currentBlock;
     Block nextBlock;
 };

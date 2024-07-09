@@ -52,3 +52,8 @@ bool Grid::isCellOutside(int row, int col)
 {
     return !(row >= 0 && row < numRows && col >= 0 && col < numCols);
 }
+
+bool Grid::isCellEmpty(int row, int column)
+{
+    return (gridCells[row][column] == 0);
+}

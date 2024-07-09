@@ -16,4 +16,5 @@ public:
     void print() const;
     void draw() const;
     bool isCellOutside(int row, int col);
+    bool isCellEmpty(int row, int column);
 };

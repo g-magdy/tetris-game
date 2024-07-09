@@ -18,7 +18,18 @@ const int rowCount = 20;
 const int columnCount = 10;
 const int cellDimension = 30;
 
-
+double lastUpdate = 0;
+double interval = 0.3;
+bool eventTriggered()
+{
+    double curr = GetTime();
+    if (curr - lastUpdate > interval)
+    {
+        lastUpdate = curr;
+        return true;
+    }
+    return false;
+}
 
 int main()
 {
@@ -31,6 +42,10 @@ int main()
     while (!WindowShouldClose())
     {
         game.handleInput();
+
+        if (eventTriggered())
+            game.MoveBlockDown();
+
         BeginDrawing();
         ClearBackground(darkBlue);
 
