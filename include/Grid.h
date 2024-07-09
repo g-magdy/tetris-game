@@ -17,4 +17,8 @@ public:
     void draw() const;
     bool isCellOutside(int row, int col);
     bool isCellEmpty(int row, int column);
+    bool isRowComplete(int row);
+    void shiftRowDown(int row, int shift);
+    void clearRow(int row);
+    void handleCompletedRows();
 };

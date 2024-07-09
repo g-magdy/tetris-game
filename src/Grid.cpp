@@ -57,3 +57,48 @@ bool Grid::isCellEmpty(int row, int column)
 {
     return (gridCells[row][column] == 0);
 }
+
+bool Grid::isRowComplete(int row)
+{
+    for (int i = 0; i < columnCount; i++)
+        if (gridCells[row][i] == 0)
+            return false;
+
+    return true;
+}
+
+void Grid::shiftRowDown(int row, int shift)
+{
+    for (int i = 0; i < columnCount; i++)
+    {
+        if (row + shift < numRows)
+            gridCells[row + shift][i] = gridCells[row][i];
+        
+        gridCells[row][i] = 0;
+    }
+}
+
+void Grid::clearRow(int row)
+{
+    for (int i = 0; i < columnCount; i++)
+    {
+        gridCells[row][i] = 0;
+    }
+}
+
+void Grid::handleCompletedRows()
+{
+    int completedRows = 0;
+    for (int r = rowCount - 1; r >= 0; r--)
+    {
+        if (isRowComplete(r))
+        {
+            completedRows++;
+            clearRow(r);
+        }
+        else if (completedRows > 0)
+        {
+            shiftRowDown(r, completedRows);
+        }
+    }
+}

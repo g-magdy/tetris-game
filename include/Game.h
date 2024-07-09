@@ -10,13 +10,14 @@ public:
     Game();
     void draw();
     void handleInput();
+    void handleCompletedRows();
     Grid grid;
 
-private:
     void RotateBlock();
     void MoveBlockLeft();
     void MoveBlockRight();
     void MoveBlockDown();
+private:
     bool isBlockOutside();
     void lockBlock();
     std::vector<Block> blocks;

@@ -111,4 +111,5 @@ void Game::lockBlock()
     }
     std::cout << '\n';
     grid.print();
+    grid.handleCompletedRows();
 }
