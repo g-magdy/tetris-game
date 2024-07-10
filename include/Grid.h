@@ -20,5 +20,5 @@ public:
     bool isRowComplete(int row);
     void shiftRowDown(int row, int shift);
     void clearRow(int row);
-    void handleCompletedRows();
+    int handleCompletedRows();
 };

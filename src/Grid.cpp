@@ -43,7 +43,7 @@ void Grid::draw() const
             int cellValue = gridCells[i][j];
             // j * cellSize is the x - offset [column]
             // i * cellSize is the y - offset [row]
-            DrawRectangle(j * cellSize + 1, i * cellSize + 1, cellSize-1, cellSize-1, colors[cellValue]);
+            DrawRectangle(j * cellSize + 11, i * cellSize + 11, cellSize-1, cellSize-1, colors[cellValue]);
         }
     }   
 }
@@ -86,7 +86,7 @@ void Grid::clearRow(int row)
     }
 }
 
-void Grid::handleCompletedRows()
+int Grid::handleCompletedRows()
 {
     int completedRows = 0;
     for (int r = rowCount - 1; r >= 0; r--)
@@ -101,4 +101,5 @@ void Grid::handleCompletedRows()
             shiftRowDown(r, completedRows);
         }
     }
+    return completedRows;
 }

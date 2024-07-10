@@ -6,6 +6,7 @@
 #include <random>
 
 extern const Color darkBlue;
+extern const Color lightBlue;
 extern const Color darkGrey;
 extern const Color green;
 extern const Color red;

@@ -1,6 +1,7 @@
 #include "Game.h"
 
 const Color darkBlue = {44, 44, 127, 255};
+const Color lightBlue = {59, 85, 162, 255};
 const Color darkGrey = {26, 31, 40, 255};
 const Color green = {47, 230, 23, 255};
 const Color red = {232, 18, 18, 255};
@@ -19,7 +20,7 @@ const int columnCount = 10;
 const int cellDimension = 30;
 
 double lastUpdate = 0;
-double interval = 0.03;
+double interval = 0.3;
 bool eventTriggered()
 {
     double curr = GetTime();
@@ -34,7 +35,7 @@ bool eventTriggered()
 int main()
 {
     srand(time(0));
-    InitWindow(screenWidth, screenHeight, "Tetris Game");
+    InitWindow(screenWidth + 200 , screenHeight + 20, "Tetris Game");
     SetTargetFPS(60);
 
     Game game;
@@ -49,6 +50,17 @@ int main()
 
         BeginDrawing();
         ClearBackground(darkBlue);
+
+        DrawText("Score", 365, 15, 38, WHITE);
+        DrawRectangleRounded(Rectangle{320, 55, 170, 60}, 0.3, 6, lightBlue);
+        int textDims = MeasureText(TextFormat("%i", game.score), 38);
+        DrawText(TextFormat("%i", game.score), 320 + (170 - textDims)/2, 65, 38, WHITE);
+
+        if (game.game_over)
+            DrawText("GAME OVER", 320, 450, 28, WHITE);
+
+        DrawText("Next", 370, 175, 38, WHITE);
+        DrawRectangleRounded(Rectangle{320, 215, 170, 180}, 0.3, 6, lightBlue);
 
         game.draw();
 

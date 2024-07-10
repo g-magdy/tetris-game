@@ -2,6 +2,7 @@
 
 Game::Game()
 {
+    score = 0;
     game_over = false;
     blocks = getBlocks();
     currentBlock = getRandomBLock();
@@ -41,10 +42,31 @@ bool Game::blockFits()
 
 void Game::reset()
 {
+    score = 0;
     grid.initialize();
     blocks = getBlocks();
     currentBlock = getRandomBLock();
     nextBlock = getRandomBLock();
+}
+
+void Game::updateScore(int linesCleared, int moveDownPoints)
+{
+    switch (linesCleared)
+    {
+    case 1:
+        score += 100;
+        break;
+    case 2:
+        score += 300;
+        break;
+    case 3:
+        score += 500;
+        break;
+    default:
+        break;
+    }
+
+    score += moveDownPoints;
 }
 
 void Game::draw()
@@ -109,6 +131,7 @@ void Game::MoveBlockDown()
             currentBlock.move(-1, 0);
             lockBlock();
         }
+        updateScore(0, 1);
     }
 }
 
@@ -138,6 +161,6 @@ void Game::lockBlock()
     }
     std::cout << '\n';
     grid.print();
-    grid.handleCompletedRows();
+    int rows = grid.handleCompletedRows();
+    updateScore(rows, 0);
 }
-
