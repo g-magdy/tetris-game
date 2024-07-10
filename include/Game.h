@@ -12,7 +12,7 @@ public:
     void handleInput();
     void handleCompletedRows();
     Grid grid;
-
+    bool game_over;
     void RotateBlock();
     void MoveBlockLeft();
     void MoveBlockRight();
@@ -26,4 +26,5 @@ private:
     bool blockFits();
     Block currentBlock;
     Block nextBlock;
+    void reset();
 };

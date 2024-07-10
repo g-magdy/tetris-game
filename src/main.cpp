@@ -19,7 +19,7 @@ const int columnCount = 10;
 const int cellDimension = 30;
 
 double lastUpdate = 0;
-double interval = 0.3;
+double interval = 0.03;
 bool eventTriggered()
 {
     double curr = GetTime();
@@ -41,6 +41,7 @@ int main()
 
     while (!WindowShouldClose())
     {
+        // update positions
         game.handleInput();
 
         if (eventTriggered())

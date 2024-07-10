@@ -2,6 +2,7 @@
 
 Game::Game()
 {
+    game_over = false;
     blocks = getBlocks();
     currentBlock = getRandomBLock();
     nextBlock = getRandomBLock();
@@ -24,7 +25,7 @@ Block Game::getRandomBLock()
 
 std::vector<Block> Game::getBlocks()
 {
-    return {I_Block(), J_Block(), L_Block(), O_Block(), S_Block(), T_Block(), Z_Block()};   
+    return {I_Block(), J_Block(), L_Block(), O_Block(), S_Block(), T_Block(), Z_Block()};
 }
 
 bool Game::blockFits()
@@ -36,6 +37,14 @@ bool Game::blockFits()
             return false;
     }
     return true;
+}
+
+void Game::reset()
+{
+    grid.initialize();
+    blocks = getBlocks();
+    currentBlock = getRandomBLock();
+    nextBlock = getRandomBLock();
 }
 
 void Game::draw()
@@ -54,36 +63,52 @@ void Game::handleInput()
         MoveBlockLeft();
     else if (IsKeyPressed(KEY_RIGHT))
         MoveBlockRight();
-
+    else if (game_over && IsKeyPressed(KEY_ENTER))
+    {
+        game_over = false;
+        reset();
+    }
 }
 
 void Game::RotateBlock()
 {
-    currentBlock.rotate();
-    if (isBlockOutside())
-        currentBlock.undoRotation();
+    if (game_over == false)
+    {
+        currentBlock.rotate();
+        if (isBlockOutside())
+            currentBlock.undoRotation();
+    }
 }
 
 void Game::MoveBlockLeft()
 {
-    currentBlock.move(0, -1);
-    if (isBlockOutside() || blockFits() == false)
-        currentBlock.move(0, 1);
+    if (game_over == false)
+    {
+        currentBlock.move(0, -1);
+        if (isBlockOutside() || blockFits() == false)
+            currentBlock.move(0, 1);
+    }
 }
 void Game::MoveBlockRight()
 {
-    currentBlock.move(0, 1);
-    if (isBlockOutside() || blockFits() == false)
-        currentBlock.move(0, -1);
+    if (game_over == false)
+    {
+        currentBlock.move(0, 1);
+        if (isBlockOutside() || blockFits() == false)
+            currentBlock.move(0, -1);
+    }
 }
 
 void Game::MoveBlockDown()
 {
-    currentBlock.move(1, 0);
-    if (isBlockOutside() || blockFits() == false)
+    if (game_over == false)
     {
-        currentBlock.move(-1, 0);
-        lockBlock();
+        currentBlock.move(1, 0);
+        if (isBlockOutside() || blockFits() == false)
+        {
+            currentBlock.move(-1, 0);
+            lockBlock();
+        }
     }
 }
 
@@ -107,9 +132,12 @@ void Game::lockBlock()
         grid.gridCells[item.row][item.column] = clr;
         std::cout << clr;
         currentBlock = nextBlock;
+        if (blockFits() == false)
+            game_over = true;
         nextBlock = getRandomBLock();
     }
     std::cout << '\n';
     grid.print();
     grid.handleCompletedRows();
 }
+
