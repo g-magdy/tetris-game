@@ -14,6 +14,10 @@ public:
     void RotateBlock();
     void MoveBlockDown();
 
+    void softDrop();
+
+    void HardDrop();
+
     int score;
     Music music;
     Sound rotateSound;

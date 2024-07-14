@@ -38,7 +38,8 @@ Classic Tetris combines strategic planning, quick reflexes, and spatial awarenes
   - move right: `Right Arrow Key`
   - move left: `Left Arrow key`
   - rotate block: `Up Arrow Key`
-  - go down: `Down Arrow key`
+  - soft drop: `Down Arrow key`
+  - hard drop: `Space key`
 
 ## 📋 Requirements
 
@@ -70,7 +71,11 @@ Classic Tetris combines strategic planning, quick reflexes, and spatial awarenes
 
 - **main.cpp:** Contains the main game loop and initialization code.
 - **Constants.h**  Contains global configuration and constants 
-- **Game class** Contains the game logic
+- **Game class** Contains the game logic and player's score
+- **Block class** parent class of all blocks, contains movement and drawing methods
+- **Grid class** stores the placed blocks and provides utility functions for game class
+- **Position class** encapslates row and column attributes of each cell
+
 
 ## 🤝 Contributing
 

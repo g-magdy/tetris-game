@@ -96,7 +96,9 @@ void Game::handleInput()
     if (IsKeyPressed(KEY_UP))
         RotateBlock();
     else if (IsKeyPressed(KEY_DOWN))
-        MoveBlockDown();
+        softDrop();
+    else if (IsKeyPressed(KEY_SPACE))
+        HardDrop();
     else if (IsKeyPressed(KEY_LEFT))
         MoveBlockLeft();
     else if (IsKeyPressed(KEY_RIGHT))
@@ -152,6 +154,23 @@ void Game::MoveBlockDown()
             lockBlock();
         }
         updateScore(0, 1);
+    }
+}
+
+void Game::softDrop()
+{
+    MoveBlockDown();
+    MoveBlockDown();
+    // this is a stupid quick implementation
+}
+
+void Game::HardDrop()
+{
+    if (game_over == false)
+    {
+        int cid = currentBlock.id;
+        while (currentBlock.id == cid)
+            MoveBlockDown();
     }
 }
 
