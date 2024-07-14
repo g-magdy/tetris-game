@@ -10,16 +10,16 @@ public:
     Game();
     void draw();
     void handleInput();
-    Grid grid;
     bool game_over;
     void RotateBlock();
-    void MoveBlockLeft();
-    void MoveBlockRight();
     void MoveBlockDown();
 
     int score;
 
 private:
+    Grid grid;
+    void MoveBlockLeft();
+    void MoveBlockRight();
     bool isBlockOutside();
     void lockBlock();
     std::vector<Block> blocks;

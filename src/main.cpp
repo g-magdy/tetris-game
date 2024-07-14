@@ -32,7 +32,7 @@ bool eventTriggered()
     return false;
 }
 
-Game game;
+
 
 int main()
 {
@@ -40,6 +40,7 @@ int main()
     InitWindow(screenWidth + 200 , screenHeight + 20, "Tetris Game");
     SetTargetFPS(60);
 
+    Game game;
 
     while (!WindowShouldClose())
     {
@@ -52,7 +53,7 @@ int main()
         BeginDrawing();
         ClearBackground(darkBlue);
 
-        DrawText("Score", 365, 15, 38, WHITE);
+        DrawText("Score", 350, 15, 38, WHITE);
         DrawRectangleRounded(Rectangle{320, 55, 170, 60}, 0.3, 6, lightBlue);
         int textDims = MeasureText(TextFormat("%i", game.score), 38);
         DrawText(TextFormat("%i", game.score), 320 + (170 - textDims)/2, 65, 38, WHITE);
@@ -60,7 +61,7 @@ int main()
         if (game.game_over)
             DrawText("GAME OVER", 320, 450, 28, WHITE);
 
-        DrawText("Next", 370, 175, 38, WHITE);
+        DrawText("Next", 360, 175, 38, WHITE);
         DrawRectangleRounded(Rectangle{320, 215, 170, 180}, 0.3, 6, lightBlue);
 
         game.draw();

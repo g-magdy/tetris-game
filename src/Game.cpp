@@ -73,7 +73,17 @@ void Game::draw()
 {
     grid.draw();
     currentBlock.draw(11, 11);
-    nextBlock.draw(270, 270);
+    
+    // I block
+    if (nextBlock.id == 3)
+        nextBlock.draw(255, 290);
+    // O block
+    else if (nextBlock.id == 4)
+        nextBlock.draw(255, 280);
+    // all other blocks
+    else
+        nextBlock.draw(270, 270);
+
 }
 
 void Game::handleInput()
