@@ -60,7 +60,12 @@ int main()
         DrawText(TextFormat("%i", game.score), 320 + (170 - textDims)/2, 65, 38, WHITE);
 
         if (game.game_over)
-            DrawText("GAME OVER", 320, 450, 28, WHITE);
+        {
+            DrawRectangleRounded(Rectangle{320, 440, 170, 170}, 0.3, 6, lightBlue);
+            DrawText("GAME OVER", 330, 480, 26, WHITE);
+            DrawText("Press ENTER", 330, 520, 22, WHITE);
+            DrawText("To Play Again", 330, 545, 22, WHITE);
+        }
 
         DrawText("Next", 360, 175, 38, WHITE);
         DrawRectangleRounded(Rectangle{320, 215, 170, 180}, 0.3, 6, lightBlue);
