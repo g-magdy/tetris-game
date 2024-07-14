@@ -12,7 +12,7 @@ public:
     void handleInput();
     bool game_over;
     void RotateBlock();
-    void MoveBlockDown();
+    bool MoveBlockDown();
 
     void softDrop();
 

@@ -143,8 +143,9 @@ void Game::MoveBlockRight()
     }
 }
 
-void Game::MoveBlockDown()
+bool Game::MoveBlockDown()
 {
+    bool locked = false;
     if (game_over == false)
     {
         currentBlock.move(1, 0);
@@ -152,9 +153,11 @@ void Game::MoveBlockDown()
         {
             currentBlock.move(-1, 0);
             lockBlock();
+            locked = true;
         }
         updateScore(0, 1);
     }
+    return locked;
 }
 
 void Game::softDrop()
@@ -168,9 +171,8 @@ void Game::HardDrop()
 {
     if (game_over == false)
     {
-        int cid = currentBlock.id;
-        while (currentBlock.id == cid)
-            MoveBlockDown();
+        // while the block has not locked, move it down
+        while (!MoveBlockDown()) {}
     }
 }
 
