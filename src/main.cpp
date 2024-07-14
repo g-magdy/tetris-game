@@ -20,7 +20,7 @@ const int columnCount = 10;
 const int cellDimension = 30;
 
 double lastUpdate = 0;
-double interval = 0.8;
+double interval = 0.6;
 bool eventTriggered()
 {
     double curr = GetTime();

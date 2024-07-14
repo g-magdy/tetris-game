@@ -29,7 +29,7 @@
 Classic Tetris combines strategic planning, quick reflexes, and spatial awareness, making it a timeless and engaging puzzle game. 🕹️
 
 ## ✨ Features
-- Music and sound effects by ![Teo Lympero](https://assetstore.unity.com/publishers/63245)
+- Music and sound effects by [Teo Lympero](https://assetstore.unity.com/publishers/63245)
 - Next Block Preview
 - Score Counter
 
