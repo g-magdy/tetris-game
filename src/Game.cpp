@@ -72,7 +72,8 @@ void Game::updateScore(int linesCleared, int moveDownPoints)
 void Game::draw()
 {
     grid.draw();
-    currentBlock.draw();
+    currentBlock.draw(11, 11);
+    nextBlock.draw(270, 270);
 }
 
 void Game::handleInput()
@@ -153,14 +154,15 @@ void Game::lockBlock()
     for (Position item : tiles)
     {
         grid.gridCells[item.row][item.column] = clr;
-        std::cout << clr;
-        currentBlock = nextBlock;
-        if (blockFits() == false)
-            game_over = true;
-        nextBlock = getRandomBLock();
     }
-    std::cout << '\n';
-    grid.print();
+
+    currentBlock = nextBlock;
+
+    if (blockFits() == false)
+        game_over = true;
+
+    nextBlock = getRandomBLock();
+
     int rows = grid.handleCompletedRows();
     updateScore(rows, 0);
 }

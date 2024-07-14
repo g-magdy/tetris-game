@@ -9,13 +9,13 @@ Block::Block()
     colors = colorsArray;
 }
 
-void Block::draw()
+void Block::draw(int offset_x, int offset_y)
 {
     std::vector<Position> tiles = getCellPositions();
     for (auto tile : tiles)
     {
         // here the -1 and the +1 are used to show gridlines between blocks
-        DrawRectangle(tile.column * cellSize + 11, tile.row * cellSize + 11, cellSize - 1, cellSize - 1, colors[id]);
+        DrawRectangle(tile.column * cellSize + offset_x, tile.row * cellSize + offset_y, cellSize - 1, cellSize - 1, colors[id]);
     }
 }
 

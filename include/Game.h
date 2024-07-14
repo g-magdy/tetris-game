@@ -10,7 +10,6 @@ public:
     Game();
     void draw();
     void handleInput();
-    void handleCompletedRows();
     Grid grid;
     bool game_over;
     void RotateBlock();

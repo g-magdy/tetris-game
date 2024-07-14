@@ -32,13 +32,14 @@ bool eventTriggered()
     return false;
 }
 
+Game game;
+
 int main()
 {
     srand(time(0));
     InitWindow(screenWidth + 200 , screenHeight + 20, "Tetris Game");
     SetTargetFPS(60);
 
-    Game game;
 
     while (!WindowShouldClose())
     {

@@ -19,7 +19,7 @@ public:
     // one of the child classes
     std::map<int, std::vector<Position>> cells;
 
-    void draw();
+    void draw(int offset_x, int offset_y);
     void move(int rows, int columns);
 
     std::vector<Position> getCellPositions();
