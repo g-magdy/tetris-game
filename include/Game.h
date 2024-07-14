@@ -15,6 +15,10 @@ public:
     void MoveBlockDown();
 
     int score;
+    Music music;
+    Sound rotateSound;
+    Sound clearSound;
+    ~Game();
 
 private:
     Grid grid;

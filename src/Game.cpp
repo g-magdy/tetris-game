@@ -7,6 +7,11 @@ Game::Game()
     blocks = getBlocks();
     currentBlock = getRandomBLock();
     nextBlock = getRandomBLock();
+    InitAudioDevice();
+    music = LoadMusicStream("sounds/music.mp3");
+    PlayMusicStream(music);
+    rotateSound = LoadSound("sounds/rotate.mp3");
+    clearSound = LoadSound("sounds/clear.mp3");
 }
 
 Block Game::getRandomBLock()
@@ -110,6 +115,10 @@ void Game::RotateBlock()
         currentBlock.rotate();
         if (isBlockOutside())
             currentBlock.undoRotation();
+        
+        // play the sound when the rotation is valid
+        else
+            PlaySound(rotateSound);
     }
 }
 
@@ -146,6 +155,14 @@ void Game::MoveBlockDown()
     }
 }
 
+Game::~Game()
+{
+    UnloadMusicStream(music);
+    UnloadSound(clearSound);
+    UnloadSound(rotateSound);
+    CloseAudioDevice();
+}
+
 bool Game::isBlockOutside()
 {
     std::vector<Position> tiles = currentBlock.getCellPositions();
@@ -174,5 +191,9 @@ void Game::lockBlock()
     nextBlock = getRandomBLock();
 
     int rows = grid.handleCompletedRows();
-    updateScore(rows, 0);
+    if (rows)
+    {
+        PlaySound(clearSound);
+        updateScore(rows, 0);
+    }
 }

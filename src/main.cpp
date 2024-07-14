@@ -46,6 +46,7 @@ int main()
     {
         // update positions
         game.handleInput();
+        UpdateMusicStream(game.music);
 
         if (eventTriggered())
             game.MoveBlockDown();
